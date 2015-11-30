@@ -6,11 +6,11 @@ Version
 
 Installation
 -----------------
-Gemfile.lock will set the watir gem to its correct version
+```Gemfile.lock``` will set the watir gem to its correct version
 
 Usage
 -----------------
-go to login-details.yml and enter your email address and password in the correct fields
+go to ```login-details.yml``` and enter your email address and password in the correct fields
 
 Development
 -----------------

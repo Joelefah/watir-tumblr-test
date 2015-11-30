@@ -1,4 +1,4 @@
-
+#$LOAD_PATH<<'.' allows user to provide modules
 require 'watir'
 
 require 'yaml'
@@ -9,24 +9,23 @@ browser = Watir::Browser.start 'http://tumblr.com/login'
 
 file = YAML.load_file('./login-details.yml')
 
-file['credentials'].each do |yml_credentials|
-	browser.text_field(id: 'signup_email').send_keys "#{yml_credentials["email"]}"
-	browser.text_field(id: 'signup_password').send_keys "#{yml_credentials["password"]}\n"
-end
+#email = browser.text_field(id: "signup_email").set file["credentials"][0]["username"]
+#password = browser.text_field(id: "signup_password").set file["credentials"][1]["password"]
 
-#loginbttn = browser.button id: 'signup_forms_submit'
+browser.text_field(id: 'signup_email').set file['credentials'][0]['email']
+browser.text_field(id: 'signup_password').set file['credentials'][1]['password']
+loginbttn = browser.button id: 'signup_forms_submit'
 
-#loginbttn.click
+loginbttn.click
 
 newpostbutton = browser.i class: 'icon_post_text'
 
 newpostbutton.click
 
-titlefield = browser.div(class: 'editor-plaintext')
-titlefield.send_keys('Testpost title')
-bodyfield=browser.div(class: 'editor-richtext')
+titlefield = browser.div(class: 'editor-plaintext').send_keys('Testpost title')
+bodyfield = browser.div(class: 'editor-richtext')
 bodyfield.click
-bodyfield.send_keys 'Does it post?'
+bodyfield.send_keys('Does it post?')
 
 createpost = browser.button(class: 'create_post_button')
 
@@ -48,4 +47,5 @@ else
 	puts "post: body post not found"
 end
 
+browser.quit
 
