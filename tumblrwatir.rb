@@ -1,16 +1,11 @@
 #$LOAD_PATH<<'.' allows user to provide modules
 require 'watir'
-
 require 'yaml'
 
 browser = Watir::Browser.start 'http://tumblr.com/login'
 
 
-
 file = YAML.load_file('./login-details.yml')
-
-#email = browser.text_field(id: "signup_email").set file["credentials"][0]["username"]
-#password = browser.text_field(id: "signup_password").set file["credentials"][1]["password"]
 
 browser.text_field(id: 'signup_email').set file['credentials'][0]['email']
 browser.text_field(id: 'signup_password').set file['credentials'][1]['password']
