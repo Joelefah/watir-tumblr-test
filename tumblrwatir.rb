@@ -1,17 +1,13 @@
 #$LOAD_PATH<<'.' allows user to provide modules
 require 'watir'
 require 'yaml'
+require './login_module.rb'
 
 browser = Watir::Browser.start 'http://tumblr.com/login'
 
 
-file = YAML.load_file('./login-details.yml')
-
-browser.text_field(id: 'signup_email').set file['credentials'][0]['email']
-browser.text_field(id: 'signup_password').set file['credentials'][1]['password']
-loginbttn = browser.button id: 'signup_forms_submit'
-
-loginbttn.click
+include Login
+Login.credentials(browser)
 
 newpostbutton = browser.i class: 'icon_post_text'
 

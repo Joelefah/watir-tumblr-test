@@ -1,0 +1,117 @@
+Sits on top of Selenium
+
+Gets all the power from selenium 
+
+Nice  DSL
+
+Page Object available
+
+Built for Ruby
+require 'watir'
+
+browser = Watir::Browser.new - 'opens firefox by default'
+
+browser.got similar to browser.get on selenium
+
+browser.goto 'domain name'
+
+browser.refresh - refreshes page
+
+browser. title - gives you the title of html
+
+browser.html = gives user html of page
+
+browser.status
+
+browser.text = text of the page, useful for checking for text on page using regex
+
+browser.text.include? 'Hello' 
+
+browser.driver uses selenium object to use what we want 
+
+browser.p.text
+
+browser.ps - paragragh collection, not array
+
+browser.ps[0]
+
+browser.to_a - turns into an array
+
+browser.a - returns first link refering to the html page
+
+browser.text_field - looks for any input with type text in it
+
+browser.text_field name: ''
+
+browser.lis id: /^foo.*/
+
+^ - 
+
+. - 0 or more instances of any character
+
+* - any character
+
+tf = browser.text_field name: 'name'
+
+tf.flash
+
+tf.value returns what ever is currently there
+
+tf.set 'Hello' same as using tf.send on selenium
+
+tf.tab_index returns number
+
+tf.exists? - checks if it exists within html 
+
+tf.visible? - specifies if its hidden or not 
+
+tf.present? checks if the field exists within the webpage
+
+tf.disabled? checks if the field is disabled 
+
+tf.enabled? checks if the field is enabled
+
+use classes/ids when hooking on to elements
+
+b = browser.button text: 'A button'
+
+b.flash  
+
+b.text
+
+b.when_present.click useful for waiting for a button/function to appear so the test stops
+
+cb.set
+
+cb.clear
+
+
+browser.element allows user to use css selectors 
+
+browser.element css: '.foo'
+
+browser.element(css: '.page-header li').html powerful way of digging css elements in a page
+
+table = browser.table
+table[Row][Column]
+table[3][1].text shows name of the field in the 4th row of the second column
+
+btns = browser.buttons
+btns.each {|b| puts b.value}
+
+ph = browser.header class:'header_name'
+
+ph.nav.ul.lis.last means in the nav tag find unordered list and find the last list
+ph.nav.ul.lis.last.flash
+ph.nav.ul.lis.last.a.href - displays html 
+
+wait_while_present(value: 'Button') - e.g wait for until the submit button is gone before the test can make the next step
+
+Watir::Wait.until do 
+	browser.text.include? 'Thank You'
+end
+
+Watir::Browser.start 'domain_name'
+
+include why you set up the email account
+show password and username 
