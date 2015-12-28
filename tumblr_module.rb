@@ -1,5 +1,5 @@
 module Login
-  def credentials(browser)
+  def credentials browser
     file = YAML.load_file('./login-details.yml')
     browser.text_field(id: 'signup_email').set file['credentials'][0]['email']
     browser.text_field(id: 'signup_password').set file['credentials'][1]['password']
@@ -7,7 +7,7 @@ module Login
     loginbttn.click   
   end
 
-  def make_post
+  def make_post browser
     newpostbutton = browser.i class: 'icon_post_text'
     newpostbutton.click
 
@@ -20,7 +20,7 @@ module Login
     createpost.click
   end
 
-  def verification
+  def verification browser
     verifyposttitle =  browser.div(class: 'post_title')
     verifypostbody = browser.div(class: 'post_body')
 
